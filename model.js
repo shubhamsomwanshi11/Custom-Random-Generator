@@ -1,6 +1,10 @@
 const mongoose = require('mongoose')
 
 const DataSchema = mongoose.Schema({
+    category: {
+        type: String,
+        required: true
+    },
     name: {
         type: String,
         required: true
@@ -9,17 +13,16 @@ const DataSchema = mongoose.Schema({
         type: String,
         required: true
     },
-    image: {
-        type: String,
-        required: true
-    },
+    // image: {
+    //     type: String,
+    //     required: true
+    // },
     sampleData: {
         type: Array,
         required: true
     },
     sentence: {
         type: String,
-        required: true
     },
     isGoogleLink: {
         type: Boolean,
