@@ -1,3 +1,4 @@
+var arrayofDetails = [];
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('create').addEventListener("click", postData);
     document.getElementById('save').addEventListener("click", postData);
@@ -100,9 +101,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
                         // Add a click event listener to the card
                         card.addEventListener('click', () => {
-                            console.log(`Clicked on card with _id: ${_id}`);
-                            Openwindow(_id);
-
+                            Openwindow(_id, arrayofDetails);
                         });
 
                         const cardContent = document.createElement('div');
@@ -142,6 +141,7 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(data => {
                 let generatorData = data.data[0];
 
+                arrayofDetails = generatorData.sampleData;
                 // Open a new tab
                 var newTab = window.open('', '_blank');
 
@@ -152,7 +152,40 @@ document.addEventListener("DOMContentLoaded", () => {
                 newTab.document.body.innerHTML = `
                     <section class="section">
                     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
-                    <script src="./index.js"></script>
+                    <script>
+                    function generateRandom(quantity) {
+                        // If quantity is greater than the array length, set it to array length
+                        const numElements = Math.min(quantity, arrayofDetails.length);
+                    
+                        // Shuffle the array to get random elements
+                        const shuffledArray = arrayofDetails.sort(() => Math.random() - 0.5);
+                    
+                        // Append selected elements to the body
+                        for (let i = 0; i < numElements; i++) {
+                            const element = shuffledArray[i];
+                    
+                            // Create HTML structure for each element
+                            const columnDiv = document.createElement("div");
+                            columnDiv.className = "column is-3";
+                    
+                            const cardDiv = document.createElement("div");
+                            cardDiv.className = "card";
+                    
+                            const cardContentDiv = document.createElement("div");
+                            cardContentDiv.className = "card-content has-text-centered has-text-weight-bold";
+                    
+                            const linkElement = document.createElement("a");
+                            linkElement.href = "#"; // You may set the actual href here
+                            linkElement.textContent = element;
+                    
+                            // Append the elements to the DOM
+                            cardContentDiv.appendChild(linkElement);
+                            cardDiv.appendChild(cardContentDiv);
+                            columnDiv.appendChild(cardDiv);
+                            document.getElementById('generator-section').appendChild(columnDiv);
+                        }
+                    }
+                    </script>
                         <h1 class="has-text-centered has-text-weight-bold title" id="generator-title">${generatorData.name}</h1>
                         <span id="generator-description" class="mx-2 is-size-5">${generatorData.description}</span>
                         <hr>
@@ -161,10 +194,10 @@ document.addEventListener("DOMContentLoaded", () => {
                         <div class="column is-2"> <!-- for action sidebar -->
                            <div class="field has-addons">
                               <div class="control">
-                                 <input id="inputRN" class="input  is-info " type="text" value="10" placeholder="Number" fdprocessedid="sgiz95">
+                                 <input id="inputRN" class="input is-medium  is-info " type="text" value="10" placeholder="Number" fdprocessedid="sgiz95">
                               </div>
                               <div class="control">
-                                 <a class="button is-info is-outlined">
+                                 <a class="button is-info is-outlined is-medium ">
                                     Generate
                                  </a>
                               </div>
@@ -172,24 +205,24 @@ document.addEventListener("DOMContentLoaded", () => {
                         </div>
                
                         <div class="column is-10"> 
-                           <button class="button is-rounded is-outlined is-primary" onclick="generateSuperheroes(2)" >
-                              2 Superheroes            </button>
-                           <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateSuperheroes(5)" >
+                           <button class="button is-rounded is-outlined is-medium is-primary" onclick="generateRandom(2)" >
+                              2             </button>
+                           <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateRandom(5)" >
                               5
                            </button>
-                           <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateSuperheroes(10)" >
+                           <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateRandom(10)" >
                               10
                            </button>
-                           <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateSuperheroes(15)" >
+                           <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateRandom(15)" >
                               15
                            </button>
-                           <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateSuperheroes(20)" >
+                           <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateRandom(20)" >
                               20
                            </button>
-                           <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateSuperheroes(25)" >
+                           <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateRandom(25)" >
                               25
                            </button>
-                           <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateSuperheroes(&quot;all&quot;)" >
+                           <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateRandom(&quot;all&quot;)" >
                               All
                            </button>
                
@@ -214,7 +247,35 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 });
 
+function generateRandom(quantity) {
+    // If quantity is greater than the array length, set it to array length
+    const numElements = Math.min(quantity, arrayofDetails.length);
 
-function generateRandomData(data,quntity) {
+    // Shuffle the array to get random elements
+    const shuffledArray = arrayofDetails.sort(() => Math.random() - 0.5);
 
+    // Append selected elements to the body
+    for (let i = 0; i < numElements; i++) {
+        const element = shuffledArray[i];
+
+        // Create HTML structure for each element
+        const columnDiv = document.createElement("div");
+        columnDiv.className = "column is-3";
+
+        const cardDiv = document.createElement("div");
+        cardDiv.className = "card";
+
+        const cardContentDiv = document.createElement("div");
+        cardContentDiv.className = "card-content has-text-centered has-text-weight-bold";
+
+        const linkElement = document.createElement("a");
+        linkElement.href = "#"; // You may set the actual href here
+        linkElement.textContent = element;
+
+        // Append the elements to the DOM
+        cardContentDiv.appendChild(linkElement);
+        cardDiv.appendChild(cardContentDiv);
+        columnDiv.appendChild(cardDiv);
+        document.getElementById('generator-section').appendChild(columnDiv);
+    }
 }
