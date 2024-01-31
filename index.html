@@ -9,10 +9,10 @@
     <script src="./index.js"></script>
 </head>
 
-<body class="has-background-dark">
+<body class="has-background-grey-lighter">
     <section class="section p-5">
-        <h1 class="title has-text-centered has-text-light">Custom Random Generator</h1>
-        <div class="columns">
+        <h1 class="title has-text-centered is-2">Custom Random Generator</h1>
+        <div class="columns mt-2">
             <div class="column mr-2 box is-8" style="background-color: #1c1c2f;">
                 <form action="" id="random-generator" onsubmit="return false">
                     <div class="is-flex">
@@ -70,7 +70,7 @@
                             </label>
                         </div>
                     </div> -->
-                    <div class="mt-3">
+                    <!-- <div class="mt-3">
                         <p class="has-text-weight-bold has-text-light mt-3">Sentence to Show</p>
                         <input type="text" placeholder="eg. This is { } Pokemon" class="mt-2 input"
                             id="generator-sentence">
@@ -78,7 +78,7 @@
                             This is { } Pokemon</span>
                         <br>
                         <span class="has-text-light">Leave it blank if you dont want anything.</span>
-                    </div>
+                    </div> -->
                     <div class="mt-3">
                         <label for="googlelink" style="cursor: pointer;">
                             <input type="checkbox" class="checkbox" id="googlelink" name="googlelink">
@@ -105,27 +105,16 @@
             <div class="column box is-4">
                 <div class="is-flex">
                     <h1 class="has-text-weight-bold has-text-info" style="width: 100%;">Output Preview :</h1>
-                    <div class="has-text-right" style="width: 100%;">
-                        <button class="button is-rounded has-text-light has-text-weight-bold"
-                            style="background-color: rgba(128, 0, 128, 0.603);">View Generator
-                            <svg class="ml-2" xmlns="http://www.w3.org/2000/svg" height="24" viewBox="0 -960 960 960"
-                                width="24">
-                                <path
-                                    d="M200-120q-33 0-56.5-23.5T120-200v-560q0-33 23.5-56.5T200-840h280v80H200v560h560v-280h80v280q0 33-23.5 56.5T760-120H200Zm188-212-56-56 372-372H560v-80h280v280h-80v-144L388-332Z"
-                                    fill="white" />
-                            </svg></button>
-                    </div>
                 </div>
+                <span class="has-text-danger" id="message">
+                    This is sample preview only.
+                </span>
                 <hr>
                 <div>
-                    <h1 class="has-text-centered has-text-weight-bold" id="generator-title">Random Pokemon Generator
+                    <h1 class="has-text-centered has-text-weight-bold" id="generator-title-preview">Random Pokemon Generator
                     </h1>
                     <div class="mt-5 is-flex">
-                        <figure class="image is-128x128" style="width: 100%;">
-                            <img src="https://bulma.io/images/placeholders/128x128.png"
-                                style="border-radius: 12px;width: 100% ;" id="generator-image">
-                        </figure>
-                        <span id="generator-description" class="ml-2" style="text-align: justify;">Random Pokémon
+                        <span id="generator-description-preview" class="ml-2" style="text-align: justify;">Random Pokémon
                             Generator
                             is a tool that generates a list of randomized Pokemon names and types which can be used in
                             entertainment purpose.</span>
@@ -137,7 +126,7 @@
                         </span>
                         <input value="5" type="number" id="quantity" style="width: 100px;" name="quantity"
                             class="input">
-                        <button class="button is-primary has-text-weight-bold">Generate</button>
+                        <button class="button is-primary has-text-weight-bold" id="generatebtn">Generate</button>
                     </div>
                     <div class="columns is-multiline mt-5" id="generator-section">
                         <div class="column is-3">
@@ -173,11 +162,12 @@
             </div>
         </div>
         <hr>
+        <div id="new-generator" class="box has-background-light"></div>
         <div class="flex">
-            <h1 class="has-text-weight-bold has-text-light is-size-4 mt-2">Other Generators</h1>
+            <h1 class="has-text-weight-bold  is-size-4 mt-2">Other Generators</h1>
             <div class="has-text-right">
                 <div class="is-flex is-align-items-center is-justify-content-flex-end">
-                    <p class="mr-3 has-text-weight-bold has-text-light">Filter By Category</p>
+                    <p class="mr-3 has-text-weight-bold">Filter By Category</p>
                     <div class="select">
                         <select id="filter-category">
                             <option value="All">All</option>

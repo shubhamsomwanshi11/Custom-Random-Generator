@@ -21,9 +21,9 @@ const DataSchema = mongoose.Schema({
         type: Array,
         required: true
     },
-    sentence: {
-        type: String,
-    },
+    // sentence: {
+    //     type: String,
+    // },
     isGoogleLink: {
         type: Boolean,
         required: true
