@@ -25,7 +25,7 @@ document.addEventListener("DOMContentLoaded", () => {
             isGoogleLink: isGoogleLink.checked
         };
 
-        fetch('http://localhost:8989/', {
+        fetch('https://vast-puce-squirrel-sock.cyclic.app/', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -43,7 +43,7 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function getNamesData(request) {
         // Fetch data from the server
-        fetch(`http://localhost:8989/${request}`)
+        fetch(`https://vast-puce-squirrel-sock.cyclic.app/${request}`)
             .then(response => response.json())
             .then(data => {
 
@@ -126,7 +126,7 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     function showGenerator(id) {
-        fetch(`http://localhost:8989/getElement/${id}`)
+        fetch(`https://vast-puce-squirrel-sock.cyclic.app/${id}`)
             .then(response => response.json())
             .then(data => {
                 let generatorData = data.data[0];

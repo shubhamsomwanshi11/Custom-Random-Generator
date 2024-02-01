@@ -7,7 +7,6 @@ require('dotenv').config();
 const app = express();
 const PORT = process.env.PORT || 8989;
 mongoose.set('strictQuery', false);
-// const Mongo_URI = 'mongodb://localhost/custom_generator';
 app.use(express.json({ limit: '5mb' }));
 const connectDB = async () => {
     try {
