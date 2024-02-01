@@ -15,13 +15,11 @@ document.addEventListener("DOMContentLoaded", () => {
     const filter = document.getElementById('filter-category');
 
     function postData() {
-        data = {
+        var data = {
             category: category.value,
             name: name.value,
             description: description.value,
-            // image: imgData,
-            sampleData: (sampleData.value).split(','),
-            // sentence: sentence.value,
+            sampleData: sampleData.value.split(','),
             isGoogleLink: isGoogleLink.checked
         };
 
@@ -35,14 +33,27 @@ document.addEventListener("DOMContentLoaded", () => {
             .then(response => response.json())
             .then(result => {
                 console.log('Success:', result);
+
+                // Display alert with "Saved information" message
+                alert('Saved information');
+
+                // Reset form fields
+                category.value = '';
+                name.value = '';
+                description.value = '';
+                sampleData.value = '';
+                isGoogleLink.checked = false;
+                getNamesData("All");
             })
             .catch(error => {
                 console.error('Error:', error);
             });
     }
 
+
     function getNamesData(request) {
         // Fetch data from the server
+        custom_generators.innerHTML = '';
         fetch(`https://vast-puce-squirrel-sock.cyclic.app/${request}`)
             .then(response => response.json())
             .then(data => {
@@ -126,12 +137,12 @@ document.addEventListener("DOMContentLoaded", () => {
     })
 
     function showGenerator(id) {
-        fetch(`https://vast-puce-squirrel-sock.cyclic.app/${id}`)
+        fetch(`https://vast-puce-squirrel-sock.cyclic.app/getElement/${id}`)
             .then(response => response.json())
             .then(data => {
                 let generatorData = data.data[0];
-
                 arrayofDetails = generatorData.sampleData;
+                console.log(generatorData);
 
                 // Set innerHTML content
                 document.getElementById('new-generator').innerHTML = `
@@ -171,7 +182,7 @@ document.addEventListener("DOMContentLoaded", () => {
                            <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateRandom(25)" >
                               25
                            </button>
-                           <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateRandom("all")" >
+                           <button class="button is-rounded is-medium is-outlined is-primary" onclick="generateRandom('all')" >
                               All
                            </button>
                
