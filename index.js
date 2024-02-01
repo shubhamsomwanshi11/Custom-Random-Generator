@@ -1,3 +1,4 @@
+// require('dotenv').config();
 var arrayofDetails = [], txtFileData = [], currentData = [];
 document.addEventListener("DOMContentLoaded", () => {
     document.getElementById('create').addEventListener("click", showPreview);
@@ -7,24 +8,11 @@ document.addEventListener("DOMContentLoaded", () => {
     let description = document.getElementById('generator-description');
     // let image = document.getElementById('generator-image');
     let sampleData = document.getElementById('sampleData');
-    let sentence = document.getElementById('generator-sentence');
+    // let sentence = document.getElementById('generator-sentence');
     let isGoogleLink = document.getElementById('googlelink');
     let category = document.getElementById('category');
     let custom_generators = document.getElementById('custom-generators');
     const filter = document.getElementById('filter-category');
-    // let imgData, data;
-
-    // Use the input event to capture changes to the image input
-    // image.addEventListener('change', () => {
-    //     var file = image.files[0];
-    //     if (file) {
-    //         var reader = new FileReader();
-    //         reader.onload = function (e) {
-    //             imgData = e.target.result;
-    //         };
-    //         reader.readAsDataURL(file);
-    //     }
-    // });
 
     function postData() {
         data = {
@@ -33,7 +21,7 @@ document.addEventListener("DOMContentLoaded", () => {
             description: description.value,
             // image: imgData,
             sampleData: (sampleData.value).split(','),
-            sentence: sentence.value,
+            // sentence: sentence.value,
             isGoogleLink: isGoogleLink.checked
         };
 
